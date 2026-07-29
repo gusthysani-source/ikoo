@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selamat Sidang KP, Iko! 🎉</title>
+<!--
+  CARA CUSTOM CEPAT:
+  1. Nama udah diisi "Iko" di beberapa tempat. Kalau mau ganti, cari & replace kata "Iko".
+  2. Foto: scroll ke bagian "WE ARE PROUD OF YOU!!!", cari 3 div dengan class "polaroid-photo",
+     terus ganti isinya jadi: <img src="nama-file-foto.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:2px;">
+  3. Nama kamu sendiri: cari tulisan "[Nama kamu]" di bagian paling bawah (footer), ganti sesuai nama kamu.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#7FD1FF;
+    --sky-light:#E4F6FF;
+    --bubblegum:#FF7FB4;
+    --bubblegum-dark:#E85A96;
+    --sunshine:#FFD65C;
+    --mint:#7EEFC6;
+    --ink:#2E2350;
+    --cream:#FFFBF5;
+    --white:#FFFFFF;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:'Quicksand', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.signature{ font-family:'Baloo 2', sans-serif; }
+
+  a, button{ font-family:inherit; }
+
+  :focus-visible{
+    outline:3px solid var(--ink);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  /* ---------- Balloons ambient background ---------- */
+  .balloons-bg{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+  }
+  .balloon{
+    position:absolute;
+    bottom:-140px;
+    width:46px;
+    height:58px;
+    border-radius:50% 50% 50% 50% / 58% 58% 42% 42%;
+    opacity:0;
+    animation:floatUp linear infinite;
+    box-shadow:inset -6px -8px 14px rgba(0,0,0,0.08), inset 6px 8px 14px rgba(255,255,255,0.25);
+  }
+  .balloon::after{
+    content:'';
+    position:absolute;
+    left:50%;
+    top:100%;
+    width:1px;
+    height:44px;
+    background:rgba(46,35,80,0.28);
+    transform:translateX(-50%);
+  }
+  .balloon.c1{ background:radial-gradient(circle at 35% 30%, #FFB0D2, var(--bubblegum)); left:6%; width:40px; height:52px; animation-duration:22s; animation-delay:-2s; }
+  .balloon.c2{ background:radial-gradient(circle at 35% 30%, #B7E8FF, var(--sky)); left:18%; width:52px; height:64px; animation-duration:26s; animation-delay:-9s; }
+  .balloon.c3{ background:radial-gradient(circle at 35% 30%, #FFF0B0, var(--sunshine)); left:32%; width:38px; height:48px; animation-duration:19s; animation-delay:-5s; }
+  .balloon.c4{ background:radial-gradient(circle at 35% 30%, #C4FBE6, var(--mint)); left:50%; width:48px; height:60px; animation-duration:24s; animation-delay:-14s; }
+  .balloon.c5{ background:radial-gradient(circle at 35% 30%, #FFB0D2, var(--bubblegum)); left:66%; width:44px; height:56px; animation-duration:21s; animation-delay:-7s; }
+  .balloon.c6{ background:radial-gradient(circle at 35% 30%, #B7E8FF, var(--sky)); left:80%; width:36px; height:46px; animation-duration:27s; animation-delay:-17s; }
+  .balloon.c7{ background:radial-gradient(circle at 35% 30%, #FFF0B0, var(--sunshine)); left:90%; width:50px; height:62px; animation-duration:23s; animation-delay:-11s; }
+
+  @keyframes floatUp{
+    0%{ transform:translate(0,0) rotate(-3deg); opacity:0; }
+    8%{ opacity:0.9; }
+    50%{ transform:translate(24px,-58vh) rotate(4deg); }
+    92%{ opacity:0.85; }
+    100%{ transform:translate(-16px,-118vh) rotate(-4deg); opacity:0; }
+  }
+
+  /* ---------- Confetti canvas ---------- */
+  #confetti-canvas{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:50;
+  }
+
+  /* ---------- Shared bits ---------- */
+  .eyebrow{
+    display:inline-block;
+    font-weight:700;
+    letter-spacing:0.14em;
+    font-size:0.8rem;
+    color:var(--bubblegum-dark);
+    background:var(--white);
+    padding:0.5rem 1.1rem;
+    border-radius:999px;
+    box-shadow:0 6px 16px rgba(46,35,80,0.12);
+    margin-bottom:1.6rem;
+  }
+
+  .cta-btn{
+    background:var(--bubblegum);
+    color:var(--white);
+    border:none;
+    font-weight:700;
+    font-size:1.05rem;
+    padding:1rem 2.2rem;
+    border-radius:999px;
+    cursor:pointer;
+    box-shadow:0 10px 24px rgba(232,90,150,0.4);
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .cta-btn:hover{ transform:translateY(-3px) scale(1.03); box-shadow:0 14px 28px rgba(232,90,150,0.48); }
+  .cta-btn:active{ transform:translateY(0) scale(0.98); }
+
+  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(6px);} }
+
+  /* ---------- Screens (single-file, JS-toggled "pages") ---------- */
+  .screen{ display:none; }
+
+  /* ---------- Screen 1: intro ---------- */
+  #screen-intro.active{
+    display:flex;
+    position:relative;
+    z-index:1;
+    min-height:100vh;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6rem 1.5rem 4rem;
+    background:linear-gradient(160deg, var(--sky) 0%, var(--sky-light) 55%, var(--cream) 100%);
+  }
+
+  #screen-intro h1{
+    font-size:clamp(2rem, 6.5vw, 3.4rem);
+    font-weight:800;
+    line-height:1.2;
+    max-width:17ch;
+    color:var(--ink);
+  }
+
+  .intro-hint{
+    margin-top:1.3rem;
+    font-size:0.88rem;
+    color:#6B5E8C;
+    animation:bob 2.2s ease-in-out infinite;
+  }
+
+  /* ---------- Screen 2: game ---------- */
+  #screen-game.active{
+    display:flex;
+    position:relative;
+    z-index:1;
+    min-height:100vh;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:1.25rem;
+    text-align:center;
+    padding:5rem 1.25rem 4rem;
+    background:linear-gradient(180deg, var(--sky-light) 0%, var(--cream) 100%);
+  }
+
+  .game-title{
+    font-size:clamp(1.4rem, 5vw, 2rem);
+    font-weight:800;
+    color:var(--ink);
+  }
+
+  .game-story{
+    max-width:44ch;
+    font-size:1rem;
+    line-height:1.6;
+    color:#4A3E68;
+  }
+
+  .hud{
+    display:flex;
+    gap:0.8rem;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .hud span{
+    background:var(--white);
+    font-weight:700;
+    font-size:0.88rem;
+    padding:0.5rem 1rem;
+    border-radius:999px;
+    box-shadow:0 6px 14px rgba(46,35,80,0.1);
+    color:var(--ink);
+  }
+
+  .maze-wrapper{
+    position:relative;
+    background:repeating-linear-gradient(var(--white) 0 32px, #DCEFFF 32px 33px);
+    border:3px solid var(--ink);
+    border-radius:14px;
+    padding:10px;
+    box-shadow:0 14px 30px rgba(46,35,80,0.15);
+    overflow:hidden;
+  }
+
+  .maze{ position:relative; display:grid; }
+
+  .maze-cell{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1rem;
+  }
+  .maze-cell.goal{ background:rgba(126,239,198,0.3); }
+
+  .collectible{
+    font-size:1.05rem;
+    transition:opacity 0.25s ease, transform 0.25s ease;
+  }
+  .collectible.collected{ opacity:0; transform:scale(0.3); }
+
+  .player-token{
+    position:absolute;
+    top:10px;
+    left:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:transform 0.12s ease;
+    pointer-events:none;
+    z-index:2;
+  }
+
+  .controls-hint{ font-size:0.82rem; color:#6B5E8C; }
+
+  .dpad{
+    display:grid;
+    grid-template-columns:52px 52px 52px;
+    grid-template-rows:52px 52px 52px;
+    grid-template-areas:
+      ".    up    ."
+      "left .     right"
+      ".    down  .";
+    gap:6px;
+  }
+  .dpad-btn{
+    border:none;
+    border-radius:14px;
+    background:var(--white);
+    box-shadow:0 6px 14px rgba(46,35,80,0.12);
+    font-size:1.2rem;
+    color:var(--ink);
+    cursor:pointer;
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .dpad-btn:active{ background:var(--sky-light); transform:scale(0.92); }
+  .dpad-btn.up{ grid-area:up; }
+  .dpad-btn.left{ grid-area:left; }
+  .dpad-btn.down{ grid-area:down; }
+  .dpad-btn.right{ grid-area:right; }
+
+  .restart-btn{
+    background:none;
+    border:2px dashed var(--bubblegum);
+    color:var(--bubblegum-dark);
+    font-weight:700;
+    font-size:0.85rem;
+    padding:0.55rem 1.2rem;
+    border-radius:999px;
+    cursor:pointer;
+  }
+
+  .toast{
+    position:fixed;
+    left:50%;
+    bottom:2rem;
+    transform:translate(-50%, 20px);
+    background:var(--ink);
+    color:var(--white);
+    padding:0.8rem 1.3rem;
+    border-radius:999px;
+    font-size:0.86rem;
+    font-weight:600;
+    max-width:86vw;
+    text-align:center;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.25s ease, transform 0.25s ease;
+    z-index:60;
+  }
+  .toast.show{ opacity:1; transform:translate(-50%, 0); }
+
+  .win-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(46,35,80,0.55);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:1.5rem;
+    z-index:70;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+  }
+  .win-overlay.show{ opacity:1; pointer-events:auto; }
+  .win-card{
+    background:var(--white);
+    border-radius:22px;
+    padding:2.4rem 2rem;
+    max-width:360px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
+    transform:translateY(14px) scale(0.96);
+    transition:transform 0.3s ease;
+  }
+  .win-overlay.show .win-card{ transform:translateY(0) scale(1); }
+  .win-card h3{ font-size:1.35rem; color:var(--bubblegum-dark); margin-bottom:0.7rem; }
+  .win-card p{ font-size:0.98rem; color:#4A3E68; margin-bottom:1.4rem; line-height:1.55; }
+
+  .cheer-bubble{
+    position:fixed;
+    transform:translate(-50%, 0);
+    background:var(--white);
+    color:var(--bubblegum-dark);
+    font-weight:700;
+    font-size:0.85rem;
+    padding:0.5rem 1rem;
+    border-radius:999px;
+    box-shadow:0 8px 18px rgba(46,35,80,0.18);
+    white-space:nowrap;
+    pointer-events:none;
+    z-index:55;
+    animation:cheerFloat 1.8s ease forwards;
+  }
+  .cheer-bubble.pickup{
+    background:var(--mint);
+    color:var(--ink);
+    font-size:0.78rem;
+    padding:0.4rem 0.85rem;
+  }
+  @keyframes cheerFloat{
+    0%{ opacity:0; transform:translate(-50%, 10px) scale(0.7); }
+    18%{ opacity:1; transform:translate(-50%, -4px) scale(1.06); }
+    30%{ transform:translate(-50%, 0) scale(1); }
+    78%{ opacity:1; transform:translate(-50%, -12px) scale(1); }
+    100%{ opacity:0; transform:translate(-50%, -30px) scale(0.95); }
+  }
+
+  /* ---------- Screen 3: celebration ---------- */
+  #screen-celebration.active{ display:block; }
+
+  .hero{
+    position:relative;
+    z-index:1;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6rem 1.5rem 4rem;
+    background:linear-gradient(160deg, var(--sky) 0%, var(--sky-light) 55%, var(--cream) 100%);
+  }
+
+  .hero h1{
+    font-size:clamp(2.2rem, 6vw, 3.8rem);
+    font-weight:800;
+    line-height:1.15;
+    max-width:16ch;
+    color:var(--ink);
+  }
+
+  .hero h1 .highlight{
+    color:var(--bubblegum-dark);
+    position:relative;
+    white-space:nowrap;
+  }
+
+  .hero .subtext{
+    margin-top:1.4rem;
+    max-width:42ch;
+    font-size:1.08rem;
+    line-height:1.65;
+    color:#4A3E68;
+  }
+
+  .hero .cta-btn{ margin-top:2.4rem; }
+
+  .scroll-hint{
+    margin-top:3rem;
+    font-size:0.85rem;
+    color:#6B5E8C;
+    animation:bob 2.2s ease-in-out infinite;
+  }
+
+  /* ---------- Wave dividers ---------- */
+  .wave{ position:relative; z-index:1; line-height:0; margin-top:-2px; }
+  .wave svg{ width:100%; height:auto; display:block; }
+
+  /* ---------- Note section ---------- */
+  .note-section{
+    position:relative;
+    z-index:1;
+    background:var(--cream);
+    padding:2rem 1.5rem 5rem;
+    display:flex;
+    justify-content:center;
+  }
+
+  .note-card{
+    position:relative;
+    max-width:640px;
+    width:100%;
+    background:var(--white);
+    border-radius:22px;
+    padding:2.6rem 2.2rem;
+    box-shadow:0 16px 40px rgba(46,35,80,0.1);
+    text-align:center;
+  }
+
+  .tape{
+    position:absolute;
+    width:70px;
+    height:26px;
+    background:rgba(255,214,92,0.75);
+    top:-14px;
+  }
+  .tape-left{ left:6%; transform:rotate(-8deg); }
+  .tape-right{ right:6%; transform:rotate(7deg); background:rgba(126,239,198,0.75); }
+
+  .note-title{
+    font-size:1.5rem;
+    font-weight:700;
+    margin-bottom:1rem;
+    color:var(--bubblegum-dark);
+  }
+
+  .note-body{
+    font-size:1.05rem;
+    line-height:1.8;
+    color:#4A3E68;
+  }
+
+  /* ---------- Achievements ---------- */
+  .achievements{
+    position:relative;
+    z-index:1;
+    background:var(--cream);
+    padding:0 1.5rem 5rem;
+    text-align:center;
+  }
+
+  .achievements h2{
+    font-size:clamp(1.6rem, 4vw, 2.2rem);
+    font-weight:700;
+    margin-bottom:2.4rem;
+    color:var(--ink);
+  }
+
+  .badge-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+    gap:1.2rem;
+    max-width:900px;
+    margin:0 auto;
+  }
+
+  .badge-card{
+    background:var(--white);
+    border-radius:18px;
+    padding:1.8rem 1.2rem;
+    box-shadow:0 10px 26px rgba(46,35,80,0.08);
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .badge-card.in-view{ opacity:1; transform:translateY(0); }
+
+  .badge-icon{ font-size:2.1rem; margin-bottom:0.7rem; }
+  .badge-label{ font-weight:700; font-size:1.02rem; margin-bottom:0.3rem; }
+  .badge-sub{ font-size:0.88rem; color:#6B5E8C; line-height:1.4; }
+
+  /* ---------- Pride / photo section ---------- */
+  .gallery-section{
+    position:relative;
+    z-index:1;
+    background:linear-gradient(180deg, var(--white) 0%, #FFEAF3 100%);
+    padding:1rem 1.5rem 6rem;
+    text-align:center;
+  }
+
+  .pride-title{
+    font-size:clamp(1.9rem, 6.5vw, 2.7rem);
+    font-weight:800;
+    color:var(--bubblegum-dark);
+    letter-spacing:0.01em;
+  }
+
+  .gallery-sub{
+    margin-top:0.7rem;
+    margin-bottom:3rem;
+    color:#6B5E8C;
+    font-size:0.95rem;
+  }
+
+  .polaroid-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:2.4rem;
+    max-width:920px;
+    margin:0 auto;
+  }
+
+  .polaroid{
+    background:var(--white);
+    padding:0.8rem 0.8rem 1.6rem;
+    width:240px;
+    box-shadow:0 14px 30px rgba(46,35,80,0.14);
+    border-radius:4px;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .polaroid:hover{ transform:translateY(-8px) rotate(0deg) !important; box-shadow:0 20px 36px rgba(46,35,80,0.2); }
+  .polaroid.rot-1{ transform:rotate(-6deg); }
+  .polaroid.rot-2{ transform:rotate(3deg); }
+  .polaroid.rot-3{ transform:rotate(-2deg); }
+
+  .polaroid-photo{
+    width:100%;
+    aspect-ratio:1/1;
+    border-radius:2px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:0.5rem;
+    color:rgba(46,35,80,0.55);
+  }
+  .polaroid-photo span.icon{ font-size:2rem; }
+  .polaroid-photo span.hint{ font-size:0.72rem; font-weight:600; padding:0 1rem; text-align:center; line-height:1.3; }
+
+  .polaroid.p1 .polaroid-photo{ background:linear-gradient(135deg, #FFD3E6, #FFB0D2); }
+  .polaroid.p2 .polaroid-photo{ background:linear-gradient(135deg, #CDEBFF, #9FD9FF); }
+  .polaroid.p3 .polaroid-photo{ background:linear-gradient(135deg, #FFF3C4, #FFE28F); }
+
+  /* ---------- Footer ---------- */
+  .footer{
+    position:relative;
+    z-index:1;
+    background:#FFEAF3;
+    text-align:center;
+    padding:4rem 1.5rem 5rem;
+  }
+
+  .footer p{ font-size:1.05rem; color:#4A3E68; }
+
+  .signature{
+    margin-top:0.6rem;
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--bubblegum-dark);
+  }
+
+  .ps{
+    margin-top:1.6rem;
+    font-size:0.9rem;
+    color:#6B5E8C;
+  }
+
+  @media (max-width:480px){
+    .note-card{ padding:2.2rem 1.4rem; }
+    .polaroid{ width:80vw; max-width:260px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .balloon{ animation:none; opacity:0; }
+    .scroll-hint, .intro-hint{ animation:none; }
+    .badge-card{ opacity:1; transform:none; transition:none; }
+    .player-token, .win-overlay, .win-card, .toast, .dpad-btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="balloons-bg" aria-hidden="true">
+    <div class="balloon c1"></div>
+    <div class="balloon c2"></div>
+    <div class="balloon c3"></div>
+    <div class="balloon c4"></div>
+    <div class="balloon c5"></div>
+    <div class="balloon c6"></div>
+    <div class="balloon c7"></div>
+  </div>
+
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- ===================== SCREEN 1: SAPAAN SIMPEL ===================== -->
+  <section id="screen-intro" class="screen active">
+    <span class="eyebrow">KHUSUS BUAT IKO 💌</span>
+    <h1>Woyy Iko, selamat yaa sidang KP-nya udah <span style="color:var(--bubblegum-dark)">LULUS</span>!! 🎉</h1>
+    <button id="btn-start-game" class="cta-btn">Liat hadiahnya, yuk! 🎁</button>
+    <p class="intro-hint">(tenang, gampang kok — tapi kudu lewatin dulu ya 👀)</p>
+  </section>
+
+  <!-- ===================== SCREEN 2: GAME LABIRIN ===================== -->
+  <section id="screen-game" class="screen">
+    <h2 class="game-title">🎓 Misi: Anter Iko ke Ruang Sidang</h2>
+    <p class="game-story">Sebelum sidang, Iko kudu muter-muter dulu tiap minggu buat bimbingan. Bantuin dia jalan sampe ruang sidang, yuk!</p>
+
+    <div class="hud">
+      <span id="hud-collect">📋 Bimbingan: 0/4</span>
+      <span id="hud-steps">👣 Langkah: 0</span>
+    </div>
+
+    <div id="maze-wrapper" class="maze-wrapper">
+      <div id="maze" class="maze"></div>
+      <div id="player-token" class="player-token">👩‍🎓</div>
+    </div>
+
+    <p class="controls-hint">Pake panah / WASD di keyboard, atau tombol di bawah ini</p>
+
+    <div class="dpad">
+      <button class="dpad-btn up" data-dir="up" aria-label="Gerak atas">▲</button>
+      <button class="dpad-btn left" data-dir="left" aria-label="Gerak kiri">◀</button>
+      <button class="dpad-btn down" data-dir="down" aria-label="Gerak bawah">▼</button>
+      <button class="dpad-btn right" data-dir="right" aria-label="Gerak kanan">▶</button>
+    </div>
+
+    <button id="btn-restart-maze" class="restart-btn">🔄 Acak labirin baru</button>
+  </section>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <div id="win-overlay" class="win-overlay">
+    <div class="win-card">
+      <h3>🎉 Nyampe juga di ruang sidang!</h3>
+      <p>Kerja bagus nganterin Iko~ Sekarang boleh deh buka hadiahnya.</p>
+      <button id="btn-win-continue" class="cta-btn">Buka hadiahnya, gaskeun ›› </button>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN 3: UCAPAN SELAMAT LENGKAP ===================== -->
+  <section id="screen-celebration" class="screen">
+
+    <section class="hero">
+      <span class="eyebrow">SIDANG KERJA PRAKTIK — KELAR ✅</span>
+      <h1>Selamat yaa Ko, sidang KP-nya <span class="highlight">LULUS!!</span> 🎉</h1>
+      <p class="subtext">Dari begadang ngebut laporan, deg-degan mikirin bakal ditanya apa sama penguji, sampe akhirnya bisa duduk anteng di depan dosen — kamu berhasil lewatin semuanya. Selamat ya, kamu keren parah!</p>
+      <button id="confetti-btn" class="cta-btn">🎊 Pecahin confetti lagi</button>
+      <p class="scroll-hint">masih ada lagi di bawah ↓</p>
+    </section>
+
+    <div class="wave wave-1" aria-hidden="true">
+      <svg viewBox="0 0 1440 110" preserveAspectRatio="none"><path fill="#FFFBF5" d="M0,64 C240,110 480,10 720,32 C960,54 1200,100 1440,58 L1440,110 L0,110 Z"></path></svg>
+    </div>
+
+    <section class="note-section">
+      <div class="note-card">
+        <div class="tape tape-left"></div>
+        <div class="tape tape-right"></div>
+        <p class="note-title">Sepucuk curhatan receh buat Iko 💌</p>
+        <p class="note-body">Dari nyari tempat KP, nunggu ACC yang gak kelar-kelar, bimbingan bolak-balik revisi, sampe akhirnya duduk anteng depan dosen penguji — semua itu kelar juga hari ini. Btw kamu emang keren sih, effort-nya kelihatan banget dari awal sampe akhir. Semoga abis ini makin banyak lagi hal keren yang nunggu Iko ke depannya. Aku ikutan seneng banget buat kamu!</p>
+      </div>
+    </section>
+
+    <section class="achievements">
+      <h2>Yang udah Iko taklukin</h2>
+      <div class="badge-grid">
+        <div class="badge-card"><div class="badge-icon">📄</div><div class="badge-label">Laporan KP</div><div class="badge-sub">Kelar ditulis & dijilid rapi</div></div>
+        <div class="badge-card"><div class="badge-icon">🎤</div><div class="badge-label">Presentasi</div><div class="badge-sub">Disampein pede, gak grogi-grogi amat</div></div>
+        <div class="badge-card"><div class="badge-icon">💬</div><div class="badge-label">Pertanyaan dosen</div><div class="badge-sub">Kejawab mulus semua, mantap!</div></div>
+        <div class="badge-card"><div class="badge-icon">🎓</div><div class="badge-label">Status</div><div class="badge-sub">Resmi lulus sidang KP!</div></div>
+      </div>
+    </section>
+
+    <div class="wave wave-2" aria-hidden="true">
+      <svg viewBox="0 0 1440 110" preserveAspectRatio="none"><path fill="#FFFFFF" d="M0,58 C240,100 480,54 720,32 C960,10 1200,64 1440,64 L1440,110 L0,110 Z"></path></svg>
+    </div>
+
+    <section class="gallery-section">
+      <h2 class="pride-title">✨ WE ARE PROUD OF YOU!!! ✨</h2>
+      <p class="gallery-sub">Fotonya nyusul di sini ya 📸</p>
+      <div class="polaroid-grid">
+        <div class="polaroid p1 rot-1">
+          <div class="polaroid-photo"> <img src="WhatsApp Image 2026-07-30 at 01.26.30.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:2px;"> </div>
+        </div>
+        <div class="polaroid p2 rot-2">
+          <div class="polaroid-photo"><img src="WhatsApp Image 2026-07-30 at 01.45.32.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:2px;"></div>
+        </div>
+        <div class="polaroid p3 rot-3">
+          <div class="polaroid-photo"><img src="WhatsApp Image 2026-07-30 at 01.26.30 (1).jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:2px;"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Sekali lagi, selamat banget yaa Ko! 🎉</p>
+      <p class="signature">Dari yang bangga banget sama kamu,<br>[Nama kamu] 💌</p>
+      <p class="ps">P.S. abis ini tinggal skripsi — santai aja, kamu pasti bisa lewatin itu juga kok.</p>
+    </footer>
+
+  </section>
+
+<script>
+  // ================= Confetti =================
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resizeCanvas(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  const palette = ['#FF7FB4', '#7FD1FF', '#FFD65C', '#7EEFC6', '#E85A96'];
+  let particles = [];
+
+  function spawnConfetti(x, y, count){
+    for(let i = 0; i < count; i++){
+      particles.push({
+        x, y,
+        vx: (Math.random() - 0.5) * 9,
+        vy: Math.random() * -11 - 4,
+        size: Math.random() * 8 + 5,
+        color: palette[Math.floor(Math.random() * palette.length)],
+        rot: Math.random() * 360,
+        vr: (Math.random() - 0.5) * 12,
+        shape: Math.random() > 0.5 ? 'circle' : 'rect',
+        life: 0,
+        maxLife: 110 + Math.random() * 60
+      });
+    }
+  }
+
+  function tick(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.vy += 0.28;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vr;
+      p.life++;
+      const alpha = Math.max(0, 1 - p.life / p.maxLife);
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot * Math.PI / 180);
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = p.color;
+      if(p.shape === 'circle'){
+        ctx.beginPath();
+        ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+      }
+      ctx.restore();
+    });
+    particles = particles.filter(p => p.life < p.maxLife && p.y < canvas.height + 60);
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  document.getElementById('confetti-btn').addEventListener('click', function(e){
+    const rect = e.target.getBoundingClientRect();
+    spawnConfetti(rect.left + rect.width / 2, rect.top, 160);
+  });
+
+  if(!reduceMotion){
+    window.addEventListener('load', () => {
+      setTimeout(() => spawnConfetti(window.innerWidth / 2, window.innerHeight * 0.25, 90), 500);
+    });
+  }
+
+  // ================= Screen navigation =================
+  function showScreen(id){
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+
+  document.getElementById('btn-start-game').addEventListener('click', () => {
+    showScreen('screen-game');
+    renderMaze();
+  });
+
+  document.getElementById('btn-win-continue').addEventListener('click', () => {
+    document.getElementById('win-overlay').classList.remove('show');
+    showScreen('screen-celebration');
+    if(!reduceMotion){
+      setTimeout(() => spawnConfetti(window.innerWidth / 2, window.innerHeight * 0.25, 150), 250);
+    }
+  });
+
+  // ================= Maze game =================
+  const COLS = 7, ROWS = 7;
+  const GOAL = { r: ROWS - 1, c: COLS - 1 };
+
+  const mazeEl = document.getElementById('maze');
+  const mazeWrapperEl = document.getElementById('maze-wrapper');
+  const playerEl = document.getElementById('player-token');
+  const hudCollect = document.getElementById('hud-collect');
+  const hudSteps = document.getElementById('hud-steps');
+  const toastEl = document.getElementById('toast');
+  const winOverlay = document.getElementById('win-overlay');
+
+  let grid = [];
+  let player = { r: 0, c: 0 };
+  let steps = 0;
+  let cellSize = 40;
+  let collectibles = [];
+  let collectedCount = 0;
+  let toastTimer = null;
+
+  function buildGrid(){
+    const g = [];
+    for(let r = 0; r < ROWS; r++){
+      const row = [];
+      for(let c = 0; c < COLS; c++){
+        row.push({ r, c, visited:false, walls:{ N:true, E:true, S:true, W:true } });
+      }
+      g.push(row);
+    }
+    const dirs = [
+      { dir:'N', opp:'S', dr:-1, dc:0 },
+      { dir:'E', opp:'W', dr:0, dc:1 },
+      { dir:'S', opp:'N', dr:1, dc:0 },
+      { dir:'W', opp:'E', dr:0, dc:-1 }
+    ];
+    const stack = [];
+    let current = g[0][0];
+    current.visited = true;
+    stack.push(current);
+    while(stack.length){
+      current = stack[stack.length - 1];
+      const options = dirs
+        .map(d => ({ ...d, nr: current.r + d.dr, nc: current.c + d.dc }))
+        .filter(d => d.nr >= 0 && d.nr < ROWS && d.nc >= 0 && d.nc < COLS && !g[d.nr][d.nc].visited);
+      if(options.length === 0){
+        stack.pop();
+      } else {
+        const pick = options[Math.floor(Math.random() * options.length)];
+        const next = g[pick.nr][pick.nc];
+        current.walls[pick.dir] = false;
+        next.walls[pick.opp] = false;
+        next.visited = true;
+        stack.push(next);
+      }
+    }
+    return g;
+  }
+
+  function pickCollectibleSpots(){
+    const all = [];
+    for(let r = 0; r < ROWS; r++){
+      for(let c = 0; c < COLS; c++){
+        if((r === 0 && c === 0) || (r === GOAL.r && c === GOAL.c)) continue;
+        all.push({ r, c });
+      }
+    }
+    for(let i = all.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [all[i], all[j]] = [all[j], all[i]];
+    }
+    return all.slice(0, 4).map(s => ({ ...s, collected:false, el:null }));
+  }
+
+  function computeCellSize(){
+    const available = Math.min(window.innerWidth - 64, 360);
+    return Math.max(28, Math.floor(available / COLS));
+  }
+
+  function renderMaze(){
+    cellSize = computeCellSize();
+    mazeEl.style.gridTemplateColumns = `repeat(${COLS}, ${cellSize}px)`;
+    mazeEl.style.gridTemplateRows = `repeat(${ROWS}, ${cellSize}px)`;
+    mazeEl.innerHTML = '';
+
+    for(let r = 0; r < ROWS; r++){
+      for(let c = 0; c < COLS; c++){
+        const cell = grid[r][c];
+        const div = document.createElement('div');
+        div.className = 'maze-cell';
+        div.style.width = cellSize + 'px';
+        div.style.height = cellSize + 'px';
+        if(cell.walls.S) div.style.borderBottom = '3px solid #2E2350';
+        if(cell.walls.E) div.style.borderRight = '3px solid #2E2350';
+        if(r === 0 && cell.walls.N) div.style.borderTop = '3px solid #2E2350';
+        if(c === 0 && cell.walls.W) div.style.borderLeft = '3px solid #2E2350';
+
+        if(r === GOAL.r && c === GOAL.c){
+          div.classList.add('goal');
+          div.innerHTML = '<span>🏁</span>';
+        }
+
+        const col = collectibles.find(x => x.r === r && x.c === c);
+        if(col && !col.collected){
+          const span = document.createElement('span');
+          span.className = 'collectible';
+          span.textContent = '📋';
+          div.appendChild(span);
+          col.el = span;
+        }
+
+        mazeEl.appendChild(div);
+      }
+    }
+
+    mazeWrapperEl.style.width = (cellSize * COLS + 20) + 'px';
+    updatePlayerToken();
+  }
+
+  function updatePlayerToken(){
+    playerEl.style.width = cellSize + 'px';
+    playerEl.style.height = cellSize + 'px';
+    playerEl.style.fontSize = Math.floor(cellSize * 0.6) + 'px';
+    playerEl.style.transform = `translate(${player.c * cellSize}px, ${player.r * cellSize}px)`;
+  }
+
+  function updateHUD(){
+    hudCollect.textContent = `📋 Bimbingan: ${collectedCount}/${collectibles.length}`;
+    hudSteps.textContent = `👣 Langkah: ${steps}`;
+  }
+
+  function showToast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2600);
+  }
+
+  function checkCollect(){
+    const col = collectibles.find(x => x.r === player.r && x.c === player.c && !x.collected);
+    if(col){
+      col.collected = true;
+      collectedCount++;
+      if(col.el) col.el.classList.add('collected');
+      if(collectedCount === collectibles.length){
+        spawnPickupCheer('Semua bimbingan kelar! Gas ke sidang! 🎉');
+      } else {
+        spawnPickupCheer(pickupCheers[Math.floor(Math.random() * pickupCheers.length)]);
+      }
+    }
+  }
+
+  function checkGoal(){
+    if(player.r === GOAL.r && player.c === GOAL.c){
+      if(collectedCount === collectibles.length){
+        triggerWin();
+      } else {
+        showToast('Eh, masih ada bimbingan yang belum kelar tuh! Cari dulu yuk 😆');
+      }
+    }
+  }
+
+  function triggerWin(){
+    winOverlay.classList.add('show');
+    if(!reduceMotion){
+      const rect = mazeWrapperEl.getBoundingClientRect();
+      spawnConfetti(rect.left + rect.width / 2, rect.top, 90);
+    }
+  }
+
+  function move(dr, dc, dir){
+    const cell = grid[player.r][player.c];
+    if(cell.walls[dir]) return;
+    const nr = player.r + dr, nc = player.c + dc;
+    if(nr < 0 || nr >= ROWS || nc < 0 || nc >= COLS) return;
+    player.r = nr;
+    player.c = nc;
+    steps++;
+    updatePlayerToken();
+    checkCollect();
+    updateHUD();
+    checkGoal();
+  }
+
+  function initMaze(){
+    grid = buildGrid();
+    player = { r: 0, c: 0 };
+    steps = 0;
+    collectedCount = 0;
+    collectibles = pickCollectibleSpots();
+    winOverlay.classList.remove('show');
+    renderMaze();
+    updateHUD();
+  }
+
+  document.getElementById('btn-restart-maze').addEventListener('click', initMaze);
+
+  document.querySelectorAll('.dpad-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dir = btn.dataset.dir;
+      if(dir === 'up') move(-1, 0, 'N');
+      else if(dir === 'down') move(1, 0, 'S');
+      else if(dir === 'left') move(0, -1, 'W');
+      else if(dir === 'right') move(0, 1, 'E');
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(!document.getElementById('screen-game').classList.contains('active')) return;
+    const key = e.key.toLowerCase();
+    const movementKeys = ['arrowup', 'w', 'arrowdown', 's', 'arrowleft', 'a', 'arrowright', 'd'];
+    if(movementKeys.includes(key)) e.preventDefault();
+    if(key === 'arrowup' || key === 'w') move(-1, 0, 'N');
+    else if(key === 'arrowdown' || key === 's') move(1, 0, 'S');
+    else if(key === 'arrowleft' || key === 'a') move(0, -1, 'W');
+    else if(key === 'arrowright' || key === 'd') move(0, 1, 'E');
+  });
+
+  window.addEventListener('resize', () => {
+    if(grid.length) renderMaze();
+  });
+
+  initMaze();
+
+  // ================= Cheer / animasi penyemangat =================
+  const generalCheers = [
+    'Semangat, Iko!! 💪',
+    'Gaskeun, Ko!! 🔥',
+    'Ayo dikit lagi!',
+    'Kamu pasti bisa, Iko!',
+    'Jalan terus, jangan nyerah!',
+    'Woohoo, lanjutkan!',
+    'Iko juara! ✨',
+    'Tetap semangat yaa!'
+  ];
+  const pickupCheers = [
+    'Yeay, satu bimbingan kelar!',
+    'Mantap, lanjut lagi!',
+    'Sip, makin deket ke sidang!',
+    'Gaskeun, sisanya dikit lagi!'
+  ];
+
+  function spawnCheerBubble(text, x, y, extraClass){
+    if(reduceMotion) return;
+    const bubble = document.createElement('div');
+    bubble.className = 'cheer-bubble' + (extraClass ? ' ' + extraClass : '');
+    bubble.textContent = text;
+    bubble.style.left = x + 'px';
+    bubble.style.top = y + 'px';
+    document.body.appendChild(bubble);
+    setTimeout(() => bubble.remove(), 1850);
+  }
+
+  function spawnAmbientCheer(){
+    if(!document.getElementById('screen-game').classList.contains('active')) return;
+    if(winOverlay.classList.contains('show')) return;
+    const rect = mazeWrapperEl.getBoundingClientRect();
+    const text = generalCheers[Math.floor(Math.random() * generalCheers.length)];
+    spawnCheerBubble(text, rect.left + rect.width / 2, rect.top - 6);
+  }
+
+  function spawnPickupCheer(text){
+    const rect = mazeWrapperEl.getBoundingClientRect();
+    const x = rect.left + 10 + player.c * cellSize + cellSize / 2;
+    const y = rect.top + 10 + player.r * cellSize - 6;
+    spawnCheerBubble(text, x, y, 'pickup');
+  }
+
+  function scheduleAmbientCheer(){
+    const delay = 4000 + Math.random() * 3000;
+    setTimeout(() => {
+      spawnAmbientCheer();
+      scheduleAmbientCheer();
+    }, delay);
+  }
+  scheduleAmbientCheer();
+
+  // ================= Scroll reveal for badge cards =================
+  const cards = document.querySelectorAll('.badge-card');
+  if('IntersectionObserver' in window && !reduceMotion){
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    cards.forEach(card => observer.observe(card));
+  } else {
+    cards.forEach(card => card.classList.add('in-view'));
+  }
+</script>
+
+</body>
+</html>
